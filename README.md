@@ -53,6 +53,7 @@ https://erda.dk/wsgi-bin/fileman.py
 In order to ensure quality of the dataset only dicom series where all dimensions are between 350 and 700 are considered. We assume normal images to have dimensions around (512,512,520)
 
 ## Create Segmentations
+### Gas-filled Colon Segments
 To segment the gas-filled segmentes of the colon we use the following two steps:
 1. **Thresholding**: Using a threshold, all air-filled parts can be easily detected. This results in a segmentation including the colon, the small intestine, the lungs, and the surrounding areas.
 
@@ -68,7 +69,8 @@ tcia-data
   │   ├── subXXXX
   │   │   └── ...
 ```
-To segment the fluid-filled p[arts of the colon we used an interactive machine learning pipeline with RootPainter. This repository contains the pre-processing steps to produce the dataset for RootPainter, and the post processing steps to refine the predictions produced by RootPainter. The RootPainter project is available here: https://osf.io/8tkpm/.
+### Fluid-filled Colon Segments
+To segment the fluid-filled parts of the colon we used an interactive machine learning pipeline with RootPainter. This repository contains the pre-processing steps to produce the dataset for RootPainter, and the post processing steps to refine the predictions produced by RootPainter and combine the gas-filled segments with the fluid-filled segments, to produce full colon segmentations. The RootPainter project is available here: https://osf.io/8tkpm/.
 
 ## Create Meshes
 In the last step, the segmented `.mha` file is transformed into meshes to a `.ply` file.
